@@ -40,29 +40,49 @@
         .btn:hover {
             background: #FFA500;
         }
-        .referral-box {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            font-weight: bold;
-        }
         .offer-section {
             margin-top: 20px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 5px;
         }
-        .appliance-images {
+        .inline-form {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            align-items: center;
+            gap: 10px;
             margin-top: 20px;
         }
-        .appliance-images img {
-            width: 80px;
-            height: auto;
-            border-radius: 10px;
+        .inline-form input {
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1em;
+            width: 200px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+        .inline-form input::placeholder {
+            color: #ddd;
+        }
+        .inline-form button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            background: #FFD700;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .inline-form button:hover {
+            background: #FFA500;
+        }
+        .referral-output {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.5em;
         }
     </style>
 </head>
@@ -82,10 +102,26 @@
             <p>🎯 The more you refer, the more you earn—no limits! 🚀</p>
         </div>
         
-      
-        
-        <a href="#" class="btn">Get Your Referral Code Now</a>
-        <div class="referral-box">Your Referral Code: <span class="highlight">Shree_Goyal_(+Your Bill Number)</span></div>
+        <div class="inline-form">
+            <input type="text" id="nameInput" placeholder="Enter Your Name">
+            <input type="text" id="billInput" placeholder="Enter Bill Number">
+            <button onclick="generateReferral()">Generate Code</button>
+        </div>
+        <div id="generatedCode" class="referral-output"></div>
     </div>
+
+    <script>
+        function generateReferral() {
+            let name = document.getElementById("nameInput").value;
+            let billNumber = document.getElementById("billInput").value;
+            if (name && billNumber) {
+                let referralCode = `ShreeGoyal_Loyal${name}${billNumber}`;
+                document.getElementById("generatedCode").innerHTML = `<p>Name: ${name}</p><p>Referral Code: <span style="font-size: 2em; color: #FFD700;">${referralCode}</span></p>`;
+            } else {
+                alert("Please enter your name and bill number");
+            }
+        }
+    </script>
 </body>
 </html>
+
