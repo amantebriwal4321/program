@@ -13,7 +13,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 700px;
+            max-width: 90%;
             margin: auto;
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -46,43 +46,47 @@
             background: rgba(255, 255, 255, 0.15);
             border-radius: 5px;
         }
-        .inline-form {
+        .form-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             gap: 10px;
             margin-top: 20px;
         }
-        .inline-form input {
-            padding: 10px;
+        .form-container input {
+            padding: 12px;
             border-radius: 8px;
             border: none;
-            font-size: 1em;
-            width: 200px;
+            font-size: 1.2em;
+            width: 90%;
+            max-width: 300px;
             text-align: center;
             background: rgba(255, 255, 255, 0.2);
             color: white;
             outline: none;
         }
-        .inline-form input::placeholder {
+        .form-container input::placeholder {
             color: #ddd;
         }
-        .inline-form button {
-            padding: 10px 15px;
+        .form-container button {
+            padding: 12px 20px;
             border-radius: 8px;
             border: none;
             background: #FFD700;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 1.2em;
+            width: 90%;
+            max-width: 300px;
         }
-        .inline-form button:hover {
+        .form-container button:hover {
             background: #FFA500;
         }
         .referral-output {
             margin-top: 20px;
             font-weight: bold;
             font-size: 1.5em;
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -102,7 +106,7 @@
             <p>🎯 The more you refer, the more you earn—no limits! 🚀</p>
         </div>
         
-        <div class="inline-form">
+        <div class="form-container">
             <input type="text" id="nameInput" placeholder="Enter Your Name">
             <input type="text" id="billInput" placeholder="Enter Bill Number">
             <button onclick="generateReferral()">Generate Code</button>
@@ -112,11 +116,11 @@
 
     <script>
         function generateReferral() {
-            let name = document.getElementById("nameInput").value;
-            let billNumber = document.getElementById("billInput").value;
+            let name = document.getElementById("nameInput").value.trim();
+            let billNumber = document.getElementById("billInput").value.trim();
             if (name && billNumber) {
                 let referralCode = `ShreeGoyal_Loyal${name}${billNumber}`;
-                document.getElementById("generatedCode").innerHTML = `<p>Name: ${name}</p><p>Referral Code: <span style="font-size: 2em; color: #FFD700;">${referralCode}</span></p>`;
+                document.getElementById("generatedCode").innerHTML = `<p>Name: ${name}</p><p>Referral Code:</p><p style="font-size: 2.2em; color: #FFD700; word-break: break-word;">${referralCode}</p>`;
             } else {
                 alert("Please enter your name and bill number");
             }
