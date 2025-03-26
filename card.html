@@ -36,35 +36,64 @@
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
+            cursor: pointer;
         }
         .btn:hover {
             background: #FFA500;
         }
-        .referral-box {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .offer-section {
+        .section {
             margin-top: 20px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 5px;
         }
-        .appliance-images {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+        .input-field {
+            margin-top: 10px;
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
         }
-        .appliance-images img {
-            width: 80px;
-            height: auto;
-            border-radius: 10px;
+        .referral-box {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #FFD700;
+            font-size: 32px;
+        }
+        .share-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+        }
+        .whatsapp {
+            background-color: #25D366;
         }
     </style>
+    <script>
+        function generateReferralCode() {
+            let name = document.getElementById("name").value.trim();
+            let billNumber = document.getElementById("billNumber").value.trim();
+            let referralCodeElement = document.getElementById("referralCode");
+            let whatsappShare = document.getElementById("whatsappShare");
+            
+            if (name && billNumber) {
+                let referralCode = "Shree Goyal_Loyal" + name + billNumber;
+                referralCodeElement.innerText = referralCode;
+                
+                let shareText = `Use my referral code ${referralCode} to get exclusive rewards at Shree Goyal Electronics!`;
+                let whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+                
+                whatsappShare.href = whatsappURL;
+            } else {
+                referralCodeElement.innerText = "Please enter both fields.";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -74,19 +103,37 @@
         <p>Share your <span class="highlight">Referral Code</span> and unlock exclusive cashback & rewards! When your friend shops using your code, you both win! 🎁</p>
         <p>✨ More referrals = More rewards ✨</p>
         
-        <div class="offer-section">
+        <div class="section">
             <h3>How It Works?</h3>
+            <p>🎯 Refer your friends to shop at Shree Goyal Electronics.</p>
             <p>🎯 If your friend buys an appliance worth ₹10,000+, you get ₹500 cashback! 💵</p>
-            <p>🎯 On purchases of ₹25,000 and more,get a chance to win multiple reward coupons🏆</p>
-            <p>🎯 Your friend also gets a loyalty card to start their own referral journey! 🔄</p>
             <p>🎯 The more you refer, the more you earn—no limits! 🚀</p>
+            <p>🎯 One card per purchase</p>
         </div>
         
-      
+        <div class="section">
+            <h3>Generate Your Referral Code</h3>
+            <input type="text" id="name" class="input-field" placeholder="Enter Your Name">
+            <input type="text" id="billNumber" class="input-field" placeholder="Enter Bill Number">
+            <button class="btn" onclick="generateReferralCode()">Generate Code</button>
+            <div class="referral-box" id="referralCode">Your Referral Code will appear here.</div>
+            <br>
+            <a id="whatsappShare" class="share-btn whatsapp" target="_blank">Share on WhatsApp</a>
+        </div>
         
-        <a href="#" class="btn">Get Your Referral Code Now</a>
-        <div class="referral-box">Your Referral Code: <span class="highlight">Shree_Goyal_(+Your Bill Number)</span></div>
+        <div class="section">
+            <h3>Loyalty Program</h3>
+            <p>Fill out our loyalty program form to start earning rewards!</p>
+            <a href="https://docs.google.com/forms/d/1ictArONQQLbp3-xEwqSUxRit-mc4ZTwFLH7MIHyp9-s/edit" class="btn" target="_blank">Fill Loyalty Program Form</a>
+        </div>
+        
+        <div class="section">
+            <h3>Leave a Review</h3>
+            <p>We value your feedback! Share your experience with us.</p>
+            <a href="https://g.page/r/Cd7JrPPp2qPyEBM/review" class="btn" target="_blank">Leave a Review</a>
+        </div>
     </div>
 </body>
 </html>
+
 
