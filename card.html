@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shree Goyal Electronics - Refer & Earn</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +13,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 90%;
+            max-width: 700px;
             margin: auto;
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -42,52 +40,28 @@
         .btn:hover {
             background: #FFA500;
         }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+        .referral-box {
             margin-top: 20px;
-        }
-        .form-container input {
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1.2em;
-            width: 90%;
-            max-width: 300px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            outline: none;
-        }
-        .form-container input::placeholder {
-            color: #ddd;
-        }
-        .form-container button {
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            background: #FFD700;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1.2em;
-            width: 90%;
-            max-width: 300px;
-        }
-        .form-container button:hover {
-            background: #FFA500;
-        }
-        .referral-output {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 1.5em;
-            word-wrap: break-word;
-        }
-        .extra-section {
-            margin-top: 30px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .offer-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+        }
+        .appliance-images {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .appliance-images img {
+            width: 80px;
+            height: auto;
             border-radius: 10px;
         }
     </style>
@@ -96,75 +70,23 @@
     <div class="container">
         <h1>SHREE GOYAL ELECTRONICS PRESENTS</h1>
         <h2>Refer & Earn Program 🎉</h2>
-        <p>✨ More referrals = More rewards ✨</p>
         <p>"<span class="highlight">Zyada dosti, zyada rewards! 💰</span>"</p>
         <p>Share your <span class="highlight">Referral Code</span> and unlock exclusive cashback & rewards! When your friend shops using your code, you both win! 🎁</p>
+        <p>✨ More referrals = More rewards ✨</p>
         
         <div class="offer-section">
             <h3>How It Works?</h3>
             <p>🎯 If your friend buys an appliance worth ₹10,000+, you get ₹500 cashback! 💵</p>
-            <p>🎯 shop for ₹25,000+,win cashback Cards Worth Upto ₹1,500  🏆</p>
+            <p>🎯 On purchases of ₹25,000 and more,get a chance to win multiple reward coupons🏆</p>
             <p>🎯 Your friend also gets a loyalty card to start their own referral journey! 🔄</p>
             <p>🎯 The more you refer, the more you earn—no limits! 🚀</p>
         </div>
         
-        <div class="form-container">
-            <input type="text" id="nameInput" placeholder="Enter Your Name">
-            <input type="text" id="billInput" placeholder="Enter Bill Number">
-            <button onclick="generateReferral()">Generate Code</button>
-        </div>
-        <div id="generatedCode" class="referral-output"></div>
-
-        <div class="extra-section">
-            <h3>Fill the Form to Join the Loyalty Program</h3>
-            <a class="btn" href="https://docs.google.com/forms/d/1ictArONQQLbp3-xEwqSUxRit-mc4ZTwFLH7MIHyp9-s/edit?pli=1" target="_blank">Fill Form</a>
-        </div>
-
-        <div class="extra-section">
-            <h3>Share Your Experience!</h3>
-            <p>We’d love to hear your feedback. Leave us a review and help us improve.</p>
-            <a class="btn" href="https://g.page/r/Cd7JrPPp2qPyEBM/review" target="_blank">Give a Review</a>
-        </div>
-    </div>
-
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            databaseURL: "YOUR_DATABASE_URL",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+      
         
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        function generateReferral() {
-            let name = document.getElementById("nameInput").value.trim();
-            let billNumber = document.getElementById("billInput").value.trim();
-            if (name && billNumber) {
-                let referralCode = `ShreeGoyal_Loyal${name}${billNumber}`;
-                document.getElementById("generatedCode").innerHTML = `<p>Name: ${name}</p><p>Referral Code:</p><p style="font-size: 2.2em; color: #FFD700; word-break: break-word;">${referralCode}</p>`;
-                
-                // Save to Firebase
-                database.ref('referrals/' + billNumber).set({
-                    name: name,
-                    referralCode: referralCode,
-                    timestamp: new Date().toISOString()
-                });
-            } else {
-                alert("Please enter your name and bill number");
-            }
-        }
-    </script>
-</body>
-</html>
-
-    </script>
+        <a href="#" class="btn">Get Your Referral Code Now</a>
+        <div class="referral-box">Your Referral Code: <span class="highlight">Shree_Goyal_(+Your Bill Number)</span></div>
+    </div>
 </body>
 </html>
 
